@@ -17,5 +17,9 @@ namespace DotNetCoreWebApp
 
         [Required]
         public DateTime BirthDate { get; set; }
+
+
+        
+
     }
 }
