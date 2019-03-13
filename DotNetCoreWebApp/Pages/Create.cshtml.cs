@@ -16,9 +16,15 @@ namespace DotNetCoreWebApp.Pages
 
         public async Task<ActionResult> OnPostAsync(Claim claim)
         {
+            if(!ModelState.IsValid)
+            {
+                return Page();
+            }
+
             _appDbContext.Claims.Add(claim);
             await _appDbContext.SaveChangesAsync();
             return Redirect("Index");
         }
+       
     }
 }
