@@ -4,9 +4,15 @@
     ViewData["Title"] = "Create";
 }
 
+<h2>Create</h2>
 
+@section Scripts{ 
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<p>Enter Claim Number: </p>
 <form method="post">
-    
+    <div asp-validation-summary="All"></div>
     <input asp-for="Claim.ClaimNumber"/>
     <input type="Submit"/>
 </form>
