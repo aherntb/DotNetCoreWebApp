@@ -1,0 +1,31 @@
+﻿@page "{id:int}"
+
+@model EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit Claim: @Model.Claim.Id</h2>
+
+<form method="post">
+    <input asp-for="Claim.Id" type="hidden"/>
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="Claim.ClaimNumber"></label>
+    </div>
+    <div>
+        <input asp-for="Claim.ClaimNumber"/>
+        <span asp-validation-for="Claim.ClaimNumber"></span>
+    </div>
+
+    <button type="submit">Save Changes</button>
+
+</form>
+
+
+
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
