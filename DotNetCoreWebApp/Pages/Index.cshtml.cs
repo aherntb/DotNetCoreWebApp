@@ -23,5 +23,18 @@ namespace DotNetCoreWebApp.Pages
         { 
             Claims = await _appDbContext.Claims.AsNoTracking().ToListAsync();
         }        
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            var claim = await _appDbContext.Claims.FindAsync(id);
+            if(claim == null)
+            {
+                return Page();
+            }
+
+            _appDbContext.Remove(claim);
+            await _appDbContext.SaveChangesAsync();
+            return RedirectToPage();
+        }
     }
 }

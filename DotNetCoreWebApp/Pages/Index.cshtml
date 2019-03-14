@@ -1,18 +1,19 @@
 ﻿@page
-@model IndexModel
+@model DotNetCoreWebApp.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
 <h2>Claims</h2>
+<form method="post">
+    <ol>
+        @foreach (var claim in Model.Claims)
+        {
+            <li>@claim.ClaimNumber  <button type="submit" asp-page-handler="Delete" asp-route-id="@claim.Id">delete</button> <a asp-page="./Edit" asp-route-id="@claim.Id"> edit</a> </li>
+        }
 
-<ol>
-    @foreach (var claim in Model.Claims)
-    {
-        <li>@claim.ClaimNumber </li>
-    }
+    </ol>
 
-</ol>
+    <a href="/Create">Create</a>
 
-<a href="/Create">Create</a>
-
+</form>

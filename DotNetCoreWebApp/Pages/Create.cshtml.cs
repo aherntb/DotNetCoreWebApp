@@ -11,17 +11,18 @@ namespace DotNetCoreWebApp.Pages
         {
             _appDbContext = appDbContext;
         }
-        
+
+        [BindProperty]
         public Claim Claim { get; set; }
 
-        public async Task<ActionResult> OnPostAsync(Claim claim)
+        public async Task<ActionResult> OnPostAsync()
         {
             if(!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _appDbContext.Claims.Add(claim);
+            _appDbContext.Claims.Add(Claim);
             await _appDbContext.SaveChangesAsync();
             return Redirect("Index");
         }
