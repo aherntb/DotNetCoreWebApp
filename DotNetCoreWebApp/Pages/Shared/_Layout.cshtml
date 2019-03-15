@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -41,6 +42,7 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
+        <h5>@Configuration["ASPNETCORE_ENVIRONMENT"]</h5>
         @RenderBody()
         <hr />
         <footer>
