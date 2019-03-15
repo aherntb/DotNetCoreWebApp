@@ -10,13 +10,46 @@
 <form method="post">
     <input asp-for="Claim.Id" type="hidden"/>
     <div asp-validation-summary="All"></div>
-    <div>
-        <label asp-for="Claim.ClaimNumber"></label>
-    </div>
-    <div>
-        <input asp-for="Claim.ClaimNumber"/>
-        <span asp-validation-for="Claim.ClaimNumber"></span>
-    </div>
+   
+    <table class="table">
+
+        <tr>
+            <td>
+                <label asp-for="Claim.ClaimNumber"></label>
+            </td>
+            <td>
+                <input asp-for="Claim.ClaimNumber"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label asp-for="Claim.PatientLastName"></label>
+            </td>
+            <td>
+                <input asp-for="Claim.PatientLastName"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label asp-for="Claim.PatientFirstName"></label>
+            </td>
+            <td>
+                <input asp-for="Claim.PatientFirstName"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label asp-for="Claim.PatientBirthDate"></label>
+            </td>
+            <td>
+                <input asp-for="Claim.PatientBirthDate"/>
+            </td>
+        </tr>
+        
+    </table>
 
     <button type="submit">Save Changes</button>
 

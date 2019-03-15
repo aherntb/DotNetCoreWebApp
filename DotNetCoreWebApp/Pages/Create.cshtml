@@ -12,7 +12,48 @@
 
 <p>Enter Claim Number: </p>
 <form method="post">
+    
     <div asp-validation-summary="All"></div>
-    <input asp-for="Claim.ClaimNumber"/>
+
+    <table class="table">
+
+        <tr>
+            <td>
+                <label asp-for="Claim.ClaimNumber"></label>
+            </td>
+            <td>
+                <input asp-for="Claim.ClaimNumber"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label asp-for="Claim.PatientLastName"></label>
+            </td>
+            <td>
+                <input asp-for="Claim.PatientLastName"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label asp-for="Claim.PatientFirstName"></label>
+            </td>
+            <td>
+                <input asp-for="Claim.PatientFirstName"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label asp-for="Claim.PatientBirthDate"></label>
+            </td>
+            <td>
+                <input asp-for="Claim.PatientBirthDate"/>
+            </td>
+        </tr>
+        
+    </table>
+    
     <input type="Submit"/>
 </form>

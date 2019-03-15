@@ -1,4 +1,6 @@
-﻿namespace DotNetCoreWebApp.BusinessRules.Interfaces
+﻿using DotNetCoreWebApp.BusinessRules.Interfaces;
+
+namespace DotNetCoreWebApp.BusinessRules
 {
     public abstract class CompositeSpecification<T> : ISpecification<T>
     {
