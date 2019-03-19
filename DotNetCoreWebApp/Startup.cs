@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,9 +46,13 @@ namespace DotNetCoreWebApp
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+
+            
             
             app.UseMvc(routes =>
             {
+                routes.MapRoute("API Default", "api/{controller}/{action=Index}/{id?}");
                 routes.MapRoute("default", "{controller}/{action=Index}/{id?}");
             });
         }

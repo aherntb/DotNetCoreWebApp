@@ -6,15 +6,19 @@ using Newtonsoft.Json;
 
 namespace DotNetCoreWebApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class GitHubController : ControllerBase
     {
 
+        public GitHubController()
+        {
+            
+        }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GitHubRepo>>> GetReposAsync()
         {
-
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("Accept","application/vnd.github.v3+json");
@@ -27,6 +31,7 @@ namespace DotNetCoreWebApp.Controllers
 
                 var data = await response.Content.ReadAsStringAsync();
                 return Ok(JsonConvert.DeserializeObject<IEnumerable<GitHubRepo>>(data));
+                
             }
 
         }
