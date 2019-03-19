@@ -45,7 +45,7 @@ namespace DotNetCoreWebApp
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller}/{action=Index}/{id?}");
