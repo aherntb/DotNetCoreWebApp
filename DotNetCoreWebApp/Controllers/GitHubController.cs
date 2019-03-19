@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
+using DotNetCoreWebApp.HttpClients;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace DotNetCoreWebApp.Controllers
 {
@@ -10,29 +9,18 @@ namespace DotNetCoreWebApp.Controllers
     [ApiController]
     public class GitHubController : ControllerBase
     {
+        private readonly IGitHubHttpClient _gitHubHttpClient;
 
-        public GitHubController()
+        public GitHubController(IGitHubHttpClient client)
         {
-            
+            _gitHubHttpClient = client;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GitHubRepo>>> GetReposAsync()
         {
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Add("Accept","application/vnd.github.v3+json");
-                client.DefaultRequestHeaders.Add("User-Agent","my-user-agent");
-
-                var url = "https://api.github.com/users/aherntb/repos";
-                var request = new HttpRequestMessage(HttpMethod.Get, url);
-
-                var response = await client.SendAsync(request);
-
-                var data = await response.Content.ReadAsStringAsync();
-                return Ok(JsonConvert.DeserializeObject<IEnumerable<GitHubRepo>>(data));
-                
-            }
+            var data =  await _gitHubHttpClient.GetReposAsync();
+            return Ok(data);
 
         }
 

@@ -1,8 +1,9 @@
+using System;
+using DotNetCoreWebApp.HttpClients;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,14 @@ namespace DotNetCoreWebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
+            //services.AddHttpClient("gitHub", client =>
+            // {
+            //     client.BaseAddress = new Uri("https://api.github.com/");
+            //     client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+            //     client.DefaultRequestHeaders.Add("User-Agent", "my-user-agent");
+            // });
+            services.AddHttpClient<IGitHubHttpClient, GitHubHttpClient>();
             services.AddDbContext<AppDbContext>(options =>options.UseInMemoryDatabase("DB"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
