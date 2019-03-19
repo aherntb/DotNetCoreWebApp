@@ -3,18 +3,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using DotNetCoreWebApp.Controllers;
-using Newtonsoft.Json;
 
 namespace DotNetCoreWebApp.HttpClients
 {
-    public interface IGitHubHttpClient
-    {
-        //created to allow implementations be mocked in tests
-        Task<IEnumerable<GitHubController.GitHubRepo>> GetReposAsync();
-    }
-
-    
-
     public class GitHubHttpClient: IGitHubHttpClient
     {
         private readonly HttpClient _httpClient;
@@ -32,8 +23,7 @@ namespace DotNetCoreWebApp.HttpClients
             var url = "users/aherntb/repos";
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await _httpClient.SendAsync(request);
-            var data = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<IEnumerable<GitHubController.GitHubRepo>>(data);
+            return response.IsSuccessStatusCode ? await response.Content.ReadAsAsync<IEnumerable<GitHubController.GitHubRepo>>() : Array.Empty<GitHubController.GitHubRepo>();
         }
     }
 }
